@@ -19,14 +19,14 @@ namespace MyMovies.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MyMovies.DataAccess.Entities.Movie", b =>
+            modelBuilder.Entity("MyMovies.Models.Entities.Movie", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
-                    b.Property<decimal>("ProductionYear")
+                    b.Property<decimal?>("ProductionYear")
                         .HasMaxLength(2100)
                         .HasColumnType("decimal(4,0)");
 

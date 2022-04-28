@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MyMovies.DataAccess.Entities
+namespace MyMovies.Models.Entities
 {
     public class Movie
     {
@@ -11,6 +11,6 @@ namespace MyMovies.DataAccess.Entities
         [Required, MaxLength(200)]
         public string Title { get; set; }
         [Column(TypeName = "decimal(4,0)"), MinLength(1900), MaxLength(2100)]
-        public decimal ProductionYear { get; set; }
+        public decimal? ProductionYear { get; set; }
     }
 }

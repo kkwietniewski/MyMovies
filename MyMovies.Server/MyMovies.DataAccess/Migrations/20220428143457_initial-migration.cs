@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MyMovies.DataAccess.Migrations
 {
-    public partial class InitialMigration : Migration
+    public partial class initialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,7 @@ namespace MyMovies.DataAccess.Migrations
                 {
                     ID = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
-                    ProductionYear = table.Column<decimal>(type: "decimal(4,0)", maxLength: 2100, nullable: false)
+                    ProductionYear = table.Column<decimal>(type: "decimal(4,0)", maxLength: 2100, nullable: true)
                 },
                 constraints: table =>
                 {

@@ -9,6 +9,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MyMovies.DataAccess.Data;
+using MyMovies.Repositories.Interfaces;
+using MyMovies.Repositories.Repositiories;
+using MyMovies.Services.Interfaces;
+using MyMovies.Services.Services;
 
 namespace MyMovies.Api
 {
@@ -26,6 +30,15 @@ namespace MyMovies.Api
         {
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("LocalConnection")));
+            services.AddCors();
+            services.AddSwaggerGen(); 
+            services.AddMvc();
+            services.AddControllers()
+                    .AddNewtonsoftJson(options =>
+                        options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+            services.AddTransient<IMovieRepository, MovieRepository>();
+            services.AddTransient<IMovieService, MovieService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,6 +47,13 @@ namespace MyMovies.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(options =>
+                {
+
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "PlaceInfo Services");
+                    options.RoutePrefix = string.Empty;
+                });
             }
             else
             {
@@ -48,8 +68,10 @@ namespace MyMovies.Api
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }

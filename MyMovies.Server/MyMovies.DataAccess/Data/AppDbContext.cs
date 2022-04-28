@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MyMovies.DataAccess.Entities;
+using MyMovies.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
