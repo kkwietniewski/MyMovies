@@ -11,7 +11,7 @@ namespace MyMovies.Models.Consts
         public static class Movies
         {
             public const string Create = Root + "/movies";
-            public const string Delete = Root + "/movies";
+            public const string Delete = Root + "/movies/{id}";
             public const string Update = Root + "/movies";
             public const string GetAll = Root + "/movies";
             public const string GetById = Root + "/movies/{id}";

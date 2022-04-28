@@ -23,9 +23,9 @@ namespace MyMovies.Services.Services
             await _movieRepository.AddAsync(entity);
         }
 
-        public async Task DeleteAsync(Movie entity)
+        public async Task DeleteAsync(Guid id)
         {
-            await _movieRepository.DeleteAsync(entity);
+            await _movieRepository.DeleteAsync(id);
         }
 
         public async Task<List<Movie>> GetAllAsync()

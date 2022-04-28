@@ -14,6 +14,11 @@ namespace MyMovies.Repositories.Repositiories
     {
         private readonly AppDbContext _context;
 
+        public MovieRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<Movie> AddAsync(Movie entity)
         {
             if (entity == null)
@@ -32,26 +37,28 @@ namespace MyMovies.Repositories.Repositiories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} couldn't be saved: {ex.Message}", ex);
+                throw new Exception($"{entity} couldn't be saved: {ex.Message}", ex);
             }
         }
 
-        public async Task<Movie> DeleteAsync(Movie entity)
+        public async Task<Guid> DeleteAsync(Guid id)
         {
-            if (entity == null)
+            if (id == null)
             {
-                throw new ArgumentException($"{nameof(DeleteAsync)} passed entity must be not null!");
+                throw new ArgumentException($"{nameof(DeleteAsync)} passed id must be not null!");
             }
 
             try
             {
-                _context.Remove(entity);
+                var movies = await GetAllAsync();
+                var movie = movies.Find(prp => prp.ID == id);
+                _context.Remove(movie);
                 await _context.SaveChangesAsync();
-                return entity;
+                return id;
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} couldn't be deleted: {ex.Message}", ex);
+                throw new Exception($"{id} couldn't be deleted: {ex.Message}", ex);
             }
         }
 
@@ -110,7 +117,7 @@ namespace MyMovies.Repositories.Repositiories
             }
             catch (Exception ex)
             {
-                throw new Exception($"{nameof(entity)} couldn't be updated: {ex.Message}", ex);
+                throw new Exception($"{entity} couldn't be updated: {ex.Message}", ex);
             }
         }
     }

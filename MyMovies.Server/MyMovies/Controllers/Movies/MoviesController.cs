@@ -40,11 +40,11 @@ namespace MyMovies.Api.Controllers.Movies
         }
 
         [HttpDelete(ApiRoutes.Movies.Delete)]
-        public async Task<IActionResult> DeleteMovie([FromBody] Movie entity)
+        public async Task<IActionResult> DeleteMovie([FromRoute] Guid id)
         {
             try
             {
-                await _movieService.DeleteAsync(entity);
+                await _movieService.DeleteAsync(id);
                 return Ok();
             }
             catch (Exception ex)
@@ -70,7 +70,7 @@ namespace MyMovies.Api.Controllers.Movies
         }
 
         [HttpGet(ApiRoutes.Movies.GetById)]
-        public async Task<IActionResult> GetMovieById([FromBody] Guid id)
+        public async Task<IActionResult> GetMovieById([FromRoute] Guid id)
         {
             try
             {

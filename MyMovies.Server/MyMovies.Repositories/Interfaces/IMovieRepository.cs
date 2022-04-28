@@ -10,7 +10,7 @@ namespace MyMovies.Repositories.Interfaces
     public interface IMovieRepository
     {
         Task<Movie> AddAsync(Movie entity);
-        Task<Movie> DeleteAsync(Movie entity);
+        Task<Guid> DeleteAsync(Guid id);
         IQueryable<Movie> GetAll();
         Task<List<Movie>> GetAllAsync(Func<IQueryable<Movie>, IQueryable<Movie>> func = null);
         Task<Movie> GetByIdAsync(Guid id);
