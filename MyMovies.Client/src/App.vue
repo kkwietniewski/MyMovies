@@ -1,40 +1,20 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
     <v-main>
-      <router-view />
+      <v-snackbar v-model="alert_show" :timeout="timeout">
+        {{ alert_message }}
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            :color="alert_type"
+            text
+            v-bind="attrs"
+            @click="alert_show = false"
+          >
+            Zamknij
+          </v-btn>
+        </template>
+      </v-snackbar>
+      <router-view @show-alert="showAlert" />
     </v-main>
   </v-app>
 </template>
@@ -42,9 +22,20 @@
 <script>
 export default {
   name: "App",
-
-  data: () => ({
-    //
-  }),
+  data() {
+    return {
+      alert_message: "",
+      alert_show: false,
+      timeout: 2500,
+      alert_type: "",
+    };
+  },
+  methods: {
+    showAlert(message, type) {
+      this.alert_show = true;
+      this.alert_message = message;
+      this.alert_type = type;
+    },
+  },
 };
 </script>

@@ -1,15 +1,14 @@
 <template>
-  <hello-world />
+  <movies-list v-on="$listeners" />
 </template>
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+import MoviesList from "@/components/MoviesList.vue";
 
 export default {
   name: "Home-view",
-
   components: {
-    HelloWorld,
+    MoviesList,
   },
 };
 </script>

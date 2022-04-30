@@ -1,3 +1,8 @@
+# MyMovies.Server
+## Project setup
+### Make sure that MyMovies.Api has been selected in Visual Studio => Start
+### At the address http://localhost:5000/index.html you can test endpoints in swagger
+
 # MyMovies.Client
 
 ## Project setup
@@ -19,6 +24,6 @@ npm run build
 ```
 npm run lint
 ```
-
+### At the address http://localhost:8080 is client with implemented endpoints
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

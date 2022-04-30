@@ -61,7 +61,7 @@ namespace MyMovies.Api
             }
 
             app.UseCors(config => config
-            .AllowAnyOrigin()
+            .WithOrigins("http://localhost:8080")
             .AllowAnyMethod()
             .AllowAnyHeader());
 
